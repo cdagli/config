@@ -9,11 +9,20 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+gaps inner 5
+gaps outer 0
+smart_gaps on
+
 set $mod Mod4
+
+exec --no-startup-id feh --bg-fill ~/Documents/wallpaper.jpg
+exec --no-startup-id compton 
+exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id i3-msg 'workspace 10; exec /usr/bin/spotify'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango: Ubuntu Mono 10, FontAwesome 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -30,7 +39,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -152,8 +161,10 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	position top
         status_command i3status
         tray_output primary
+	status_command i3status | ~/Documents/i3spotifystatus/pystatus.py
 }
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
