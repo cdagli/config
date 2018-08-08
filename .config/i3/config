@@ -25,9 +25,8 @@ set $mod Mod4
 exec --no-startup-id feh --bg-fill ~/Documents/wallpaper2.jpg
 exec --no-startup-id compton 
 exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id i3-msg 'workspace 10; exec /usr/bin/google-chat'
 exec --no-startup-id i3-msg 'workspace 10; exec /usr/bin/spotify'
-exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/google-chat'
-exec --no-startup-id i3-msg 'workspace 9; exec vim /home/caner/TODO'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -178,7 +177,7 @@ bar {
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id ~/.xlock/lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
